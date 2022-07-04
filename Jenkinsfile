@@ -1,5 +1,5 @@
 pipeline {
-  agent { label 'slave1' }
+  agent { label 'Built-In Node' }
   stages {
         stage('Clone step') {
             steps {
