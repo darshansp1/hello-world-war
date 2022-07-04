@@ -9,7 +9,8 @@ pipeline {
         }
     stage('Build') {
             steps {
-                sh 'rm -rf hello-world-war-1.0.0.war'
+                sh 'rm -rf job6_piplinejob2'
+                sh 'rm -rf job6_piplinejob2@tmp'
                 sh 'mvn package'
             }
         }
