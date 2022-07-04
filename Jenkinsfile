@@ -9,8 +9,6 @@ pipeline {
         }
     stage('Build') {
             steps {
-                sh 'rm -rf job6_piplinejob2'
-                sh 'rm -rf job6_piplinejob2@tmp'
                 sh 'mvn package'
             }
         }
