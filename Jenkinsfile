@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'slave1' }
+    agent { label 'slave5' }
     stages {
         stage('clone step') {
             steps {
