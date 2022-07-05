@@ -1,6 +1,21 @@
 pipeline {
     agent { label 'slave5' }
     stages {
+       stage {'parameters'}
+       {
+         steps{
+            script {
+                 properties([
+                    parameters([
+                        choice(
+                            choices: ['slave','slave5'],
+                             name : 'slaves'
+                             )
+                             ])
+                           ])
+                  }
+              }
+}
         stage('clone step') {
             steps {
                 sh 'rm -rf hello-world-war'
