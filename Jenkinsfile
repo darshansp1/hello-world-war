@@ -29,7 +29,7 @@ pipeline {
   }
       stage('Deploy step') {
             steps {
-                sh 'sudo cp /home/slave5/workspace/job92_deploy_slave5/target/hello-world-war-1.0.0.war /opt/apache-tomcat-9.0.64/webapps/'      
+                sh 'sudo cp /home/slave5/workspace/job812_deploy_slave5/target/hello-world-war-1.0.0.war /opt/apache-tomcat-9.0.64/webapps/'      
             }
         }
     }
