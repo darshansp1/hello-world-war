@@ -37,6 +37,7 @@ stage('Login to Docker hub') {
                 sh "sudo docker run -d -p 8004:8080 darshansp111/jenkinsassignment:latest"
              }
         }
+	 
  
     }
 	}
