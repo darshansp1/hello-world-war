@@ -9,7 +9,7 @@ pipeline {
             }
         }
         stage('Build Stage') {
-            agent none
+            agent any
             steps {
                 sh 'mvn package'
             }
