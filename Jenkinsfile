@@ -1,17 +1,28 @@
 pipeline {
-    agent none
+    agent any
+    parameters {
+        string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
+
+        text(name: 'BIOGRAPHY', defaultValue: '', description: 'Enter some information about the person')
+
+        booleanParam(name: 'TOGGLE', defaultValue: true, description: 'Toggle this value')
+
+        choice(name: 'CHOICE', choices: ['One', 'Two', 'Three'], description: 'Pick something')
+
+        password(name: 'PASSWORD', defaultValue: 'SECRET', description: 'Enter a password')
+    }
     stages {
-        stage('Clone Step') {
-            agent { label 'java' }
+        stage('Example') {
             steps {
-                sh 'rm -rf hello-world-war'
-                sh 'git clone https://github.com/darshansp1/hello-world-war.git'
-            }
-        }
-        stage('Build Stage') {
-            agent any
-            steps {
-                sh 'mvn package'
+                echo "Hello ${params.PERSON}"
+
+                echo "Biography: ${params.BIOGRAPHY}"
+
+                echo "Toggle: ${params.TOGGLE}"
+
+                echo "Choice: ${params.CHOICE}"
+
+                echo "Password: ${params.PASSWORD}"
             }
         }
     }
