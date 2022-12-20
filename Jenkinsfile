@@ -1,17 +1,21 @@
 pipeline {
     agent any
     stages {
-        stage('Tests') {
-            options { 
-                catchError(message: "Test failed", stageResult: 'UNSTABLE', buildResult: 'UNSTABLE') 
-            } 
-            stages {
-                stage('Test 1') {
-                    echo 'test 1 succeeded'
-                }        
-                stage('Test 2') {
-                    error 'test 2 failed'
-                }        
+        stage('1') {
+            steps {
+                sh 'exit 0'
+            }
+        }
+        stage('2') {
+            steps {
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    sh "exit 1"
+                }
+            }
+        }
+        stage('3') {
+            steps {
+                sh 'exit 0'
             }
         }
     }
