@@ -15,6 +15,7 @@ pipeline {
         }
         stage('3') {
             steps {
+                catchError(message: "Test failed", stageResult: 'UNSTABLE', buildResult: 'UNSTABLE') 
                 sh 'exit 0'
             }
         }
