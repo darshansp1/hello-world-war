@@ -1,21 +1,34 @@
 pipeline {
-    agent any
+    agent none
     stages {
-        stage('1') {
-            steps {
-                sh 'exit 0'
-            }
-        }
-        stage('2') {
-            steps {
-                    catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                    sh "exit 1"
+        stage('Run Tests') {
+            parallel {
+                stage('Test On Windows') {
+                    agent {
+                        label "windows"
+                    }
+                    steps {
+                        bat "run-tests.bat"
+                    }
+                    post {
+                        always {
+                            junit "**/TEST-*.xml"
+                        }
+                    }
                 }
-            }
-        }
-        stage('3') {
-            steps {
-                sh 'exit 0'
+                stage('Test On Linux') {
+                    agent {
+                        label "linux"
+                    }
+                    steps {
+                        sh "run-tests.sh"
+                    }
+                    post {
+                        always {
+                            junit "**/TEST-*.xml"
+                        }
+                    }
+                }
             }
         }
     }
